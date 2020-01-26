@@ -130,9 +130,13 @@ var createManyPeople = function(arrayOfPeople, done) {
 // Use the function argument `personName` as search key.
 
 var findPeopleByName = function(personName, done) {
-  
-  done(null/*, data*/);
-
+  Person.find({name: personName}, function(err, found){
+    if(err){
+      return console.log(err);
+    }
+    console.log(found);
+    done(null, found);
+  });
 };
 
 /** 6) Use `Model.findOne()` */
