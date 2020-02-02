@@ -307,8 +307,13 @@ var removeManyPeople = function(done) {
 
 var queryChain = function(done) {
   var foodToSearch = "burrito";
-  
-  done(null/*, data*/);
+  var jsonObject = {favoriteFoods: foodToSearch};
+  Person.find(jsonObject).sort({name:1}).limit(2).select({age: 0}).exec(function(err, data){
+    if(err){
+      return done(err);
+    }
+    return done(null, data);
+  });
 };
 
 /** **Well Done !!**
